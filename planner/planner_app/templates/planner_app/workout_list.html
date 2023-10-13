@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout List</title>
+</head>
+<body>
+    <h1>Workout List</h1>
+    <ul>
+        {% for workout in workouts %}
+            <li>
+                <strong>{{ workout.day }} Workout</strong><br>
+                Sets: {{ workout.sets }}, Reps: {{ workout.reps }}<br>
+                Exercises:
+                <ul>
+                    {% for exercise in workout.exercises.all %}
+                        <li>{{ exercise.name }} - Muscle Target: {{ exercise.muscle_target }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
