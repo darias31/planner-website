@@ -1,14 +1,36 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>List of Workouts</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Workout List</title>
+    <link rel="stylesheet" href="{% static 'planner_app/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-	<script src="index.js"></script>
-    <h1>View your list of workouts here:</h1>
+    <h1>Workout List</h1>
+    <ul>
+      {% for workout in workouts %}
+      <li>
+        <h2>{{ workout.name }}</h2>
+        <p>Weekday: {{ workout.weekday }}</p>
+        <p>Exercises:</p>
+        <ul>
+          {% for exercise_with_info in workout.exercise_with_info_set.all %}
+          <li>
+            <span>{{ exercise_with_info.exercise.name }}</span> - Sets: {{ exercise_with_info.sets }} - Reps: {{ exercise_with_info.reps }}
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% empty %}
+      <p>No workouts available.</p>
+      {% endfor %}
+    </ul>
   </body>
 </html>
