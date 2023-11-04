@@ -1,0 +1,16 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color:rgb(42, 87, 87);
+}
+
+a {
+    color:rgb(42, 87, 87);
+}
+
+a:hover {
+    color:rgb(119, 165, 165);
+}
+
+span {
+    font-weight: bolder;
+}
