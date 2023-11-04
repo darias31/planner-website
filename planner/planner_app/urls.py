@@ -5,7 +5,7 @@ urlpatterns = [
     path('', index_view, name='index'),
     path('workout_list/', WorkoutListView.as_view(), name='workout_list'),
     path('create_workout/', CreateWorkoutView.as_view(), name='create_workout'),
-    #path('create_exercise/', CreateWorkoutView.as_view(), name='create_exercise'),
+    
     
 ]
 
