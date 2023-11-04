@@ -19,6 +19,38 @@
     <script src="index.js"></script>
     <h1>Create a brand new workout here:</h1>
 
-    <form>{{ form }}</form>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      {{ exercise_formset.management_form }}
+      {{ exercise_formset.non_form_errors }}
+      <table>
+          {% for form in exercise_formset %}
+              <tr>
+                  {{ form.as_table }}
+              </tr>
+          {% endfor %}
+      </table>
+      <button type="button" id="add-exercise">Add Exercise</button>
+      <input type="submit" value="Create Workout and Add Exercises">
+  </form>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addExerciseButton = document.getElementById('add-exercise');
+        const formsetTable = document.querySelector('table');
+
+        addExerciseButton.addEventListener('click', function () {
+            // Clone the first form and add it to the table
+            const firstForm = document.querySelector('form table tr');
+            const newForm = firstForm.cloneNode(true);
+            formsetTable.appendChild(newForm);
+        });
+    });
+</script>
+
+  
+  
+  
   </body>
 </html>
